@@ -1,7 +1,6 @@
 /******************************************************************************
-String Rotation:Assumeyou have a method isSubstringwhich checks if oneword is a substring
-of another. Given two strings, sl and s2, write code to check if s2 is a rotation of sl using only one
-call to isSubstring (e.g., "waterbottle" is a rotation of"erbottlewat"). 
+Zero Matrix: Write an algorithm such that if an element in an MxN matrix is 0, its entire row and
+column are set to 0.
 *******************************************************************************/
 
 #include<bits/stdc++.h>
