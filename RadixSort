@@ -1,0 +1,52 @@
+/******************************************************************************
+
+                              Online C++ Compiler.
+               Code, Compile, Run and Debug C++ program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+//radix sort
+
+#include<bits/stdc++.h>
+using namespace std;
+void countingSort(vector<int>& v, int i){
+    int n = v.size();
+    vector<int>output(n);
+    int count[10] = {0};
+    
+    for(int j=0; j<n; j++){
+        int index = (v[j] / i) % 10;
+        count[index]++;
+    }
+    for(int j=1; j<10; j++){
+        count[j] += count[j-1];
+    }
+    for(int j=n-1; j>=0; j--){
+        int index = (v[j] / i) % 10;
+        output[count[index]-1] = v[j];
+        count[index]--;
+    }
+    for(int j=0; j<n; j++){
+        v[j] = output[j];
+    }
+}
+
+void radixSort(vector<int>& v){
+    int maxElement = *max_element(v.begin(),v.end());
+    for(int i = 1; maxElement/i > 0; i *= 10){
+        // sort ith digit
+        countingSort(v,i);
+    }
+}
+void print(vector<int>& v){
+    for(auto it:v)  cout << it <<" ";
+    cout << endl;
+}
+int main()
+{
+    vector<int>v = {190,123,200,10,11,1,10,345};
+    print(v);
+    radixSort(v);
+    print(v);
+    return 0;
+}
