@@ -1,0 +1,84 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+// queue using stack
+/*
+queue -> FIFO
+stack -> LIFO
+
+operation-
+    push()
+    pop()
+    top()
+*/
+/*
+queue
+2<-3<-4
+
+stack-
+    [4]
+    [3]
+    [2]
+    [1]
+
+input               output
+2
+1
+*/
+
+
+class QueueUsingStack{
+    public:
+        stack<int>input;
+        stack<int>output;
+        
+        void push(int x){
+            cout << "element inserted "<< x<<endl;
+            input.push(x);
+        }
+        int pop(){
+            if(output.empty()){
+                while(!input.empty()){
+                    output.push(input.top());
+                    input.pop();
+                }
+            }
+            if(output.empty()){
+                cout << "queue is empty"<<endl;
+                return -1;
+            }
+            int val = output.top();
+            output.pop();
+            return val;
+            
+        }
+        int top(){
+          if(!output.empty()){
+              return output.top();
+          }  
+          while(!input.empty()){
+              output.push(input.top());
+              input.pop();
+          }
+          if(output.empty()){
+              cout <<"queue is empty"<<endl;
+              return -1;
+          }
+          return output.top();
+        }
+};
+
+int main(){
+    QueueUsingStack s1;
+    s1.push(1);
+    s1.push(2);
+    s1.push(3);
+    cout << s1.top()<<endl;
+    cout << s1.pop()<<endl;
+    cout << s1.top()<<endl;
+    s1.push(4);
+    cout << s1.top()<<endl;
+   
+    
+    return 0;
+}
